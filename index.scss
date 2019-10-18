@@ -1,0 +1,219 @@
+*{
+    position: relative;
+    //限制邊界
+    box-sizing: border-box;
+    font-family: arial,微軟正黑體;
+}
+
+html,body{
+    height: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+.wrapper{
+    height: 100%;
+    background: linear-gradient(#4c68d7,#8a3ab9,#bc2a8d,#cd486b,#e95950,#fbad50,#fccc63);
+
+}
+// Camera
+.camera{
+    width: 200px;
+    height: 200px;
+    border: 10px solid #fff;
+    border-radius: 50px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    //要讓picture有透視感
+    perspective: 500px;
+    animation: 
+        ballUp 0.5s 1s both,
+        ballDown 0.2s 1.5s ease-in forwards,
+        cameraIn 0.5s 1.7s forwards;
+}
+
+@keyframes ballUp{
+    0%{top: 50%;width: 5px;height: 5px;opacity: 0;}
+    10%{opacity: 1;}
+    100%{top: 10%;width: 5px;height: 5px;}
+}
+
+@keyframes ballDown{
+    0%{ top: 10%}
+    100%{top: 50%;}
+}
+
+@keyframes cameraIn{
+    0%{width: 5px;height: 5px;}
+    80%{width: 250px;height: 250px;}
+    100%{width: 200px;height: 200px;}
+}
+// Lens
+.lens{
+    width: 100px;
+    height: 100px;
+    border: 15px solid #fff;
+    border-radius: 50%;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+
+    animation: lensIn 0.3s 1.8s backwards;
+}
+
+@keyframes lensIn{
+    0%{width: 0;height: 0;opacity: 0;}
+    10%{opacity: 1;}
+    80%{width: 120px;height: 120px;}
+    100%{width: 100px;height: 100px;}
+}
+
+// Flashlight
+.flashlight{
+    width: 20px;
+    height: 20px;
+    background-color: #fff;
+    border-radius: 50%;
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    animation: flashlightIn 0.3s 2.2s backwards;
+// Flash
+    &::after{
+        content: "";
+        width: 200px;
+        height: 200px;
+        border-radius: 50%;
+        background-color: rgba(256, 256, 256, 0.5);
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%,-50%);
+        animation: flash 0.3s 3s both;
+    }
+}
+
+@keyframes flashlightIn{
+    0%{transform: scale(0);}
+    80%{transform: scale(1.2);}
+    100%{transform: scale(1);}
+}
+
+@keyframes flash{
+    0%{opacity: 0;}
+    25%{opacity: 1;}
+    50%{opacity: 0;}
+    75%{opacity: 1;}
+    100%{opacity: 0;}
+}
+
+// Picture
+.picture{
+    width: 250px;
+    height: 250px;
+    border: 10px solid #fff;
+    border-bottom: 20px solid #fff;
+    background-color: #ccc;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    overflow: hidden;
+    transition: all 0.3s;
+    animation: 
+        pictureIn 1s 3.5s backwards,
+        pictureFlip 1s 4.5s;
+    &:hover{
+        width: 400px;
+        height: 400px;
+        background-color: #fff;
+        border: 0;
+        padding: 20px;
+        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.5);
+        & .text{
+            opacity: 1;
+            transform: translateX(0%);
+            transition: all 1s 0.3s;
+        }
+        //同層級使用 ~
+        & ~ .mouse{
+            //使用opacity會跟動畫有衝突，所以使用visbility
+            visibility: hidden;
+        }
+    }
+    .text{
+        opacity: 0;
+        transform: translateX(-20%);
+    }
+    h1,h2{
+        margin: 0;
+    }
+    h1{
+        font-size: 24px;
+        line-height: 40px;
+        color: #333;
+    }
+    h2{
+        font-size: 16px;
+        line-height: 30px;
+        color: #333;
+    }
+}
+
+@keyframes pictureIn{
+    0%{height: 0;width: 120px;top: 100%;transform: translate(-50%,0);opacity: 0;}
+    100%{height: 120px;width: 120px;top: 100%;transform: translate(-50%,0);}
+}
+@keyframes pictureFlip{
+    0%{
+        height: 120px;
+        width: 120px;
+        top: 100%;
+        transform: translate(-50%,0) rotateX(0deg);
+    }
+    100%{
+        height: 250px;
+        width: 250px;
+        top: 50%;
+        transform: translate(-50%,-50%) rotateX(360deg);
+    }
+}
+
+//ImageBox
+.imgBox{
+    animation: showImg 1s 5s backwards;
+    height: 300px;
+    overflow: hidden;
+    img{
+        width: 100%;
+    }
+}
+
+@keyframes showImg{
+    0%{opacity: 0;}
+    100%{opacity: 1;}
+}
+
+//Mouse
+.mouse{
+    width: 25px;
+    height: 25px;
+    background-image: url("pointer.svg");
+    background-size: cover;
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    opacity: 0;
+    transform: translateX(-50%);
+    animation: mouseHover 1.5s 5.5s infinite;
+}
+
+@keyframes mouseHover{
+    0%{top: 150%;}
+    20%{opacity: 1;}
+    80%{opacity: 1;}
+    100%{top: 60%;}
+}

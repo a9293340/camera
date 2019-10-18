@@ -1,0 +1,469 @@
+@charset "UTF-8";
+* {
+  position: relative;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  font-family: arial,微軟正黑體;
+}
+
+html, body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+.wrapper {
+  height: 100%;
+  background: -webkit-gradient(linear, left top, left bottom, from(#4c68d7), color-stop(#8a3ab9), color-stop(#bc2a8d), color-stop(#cd486b), color-stop(#e95950), color-stop(#fbad50), to(#fccc63));
+  background: linear-gradient(#4c68d7, #8a3ab9, #bc2a8d, #cd486b, #e95950, #fbad50, #fccc63);
+}
+
+.camera {
+  width: 200px;
+  height: 200px;
+  border: 10px solid #fff;
+  border-radius: 50px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  -webkit-transform: translate(-50%, -50%);
+          transform: translate(-50%, -50%);
+  -webkit-perspective: 500px;
+          perspective: 500px;
+  -webkit-animation: ballUp 0.5s 1s both, ballDown 0.2s 1.5s ease-in forwards, cameraIn 0.5s 1.7s forwards;
+          animation: ballUp 0.5s 1s both, ballDown 0.2s 1.5s ease-in forwards, cameraIn 0.5s 1.7s forwards;
+}
+
+@-webkit-keyframes ballUp {
+  0% {
+    top: 50%;
+    width: 5px;
+    height: 5px;
+    opacity: 0;
+  }
+  10% {
+    opacity: 1;
+  }
+  100% {
+    top: 10%;
+    width: 5px;
+    height: 5px;
+  }
+}
+
+@keyframes ballUp {
+  0% {
+    top: 50%;
+    width: 5px;
+    height: 5px;
+    opacity: 0;
+  }
+  10% {
+    opacity: 1;
+  }
+  100% {
+    top: 10%;
+    width: 5px;
+    height: 5px;
+  }
+}
+
+@-webkit-keyframes ballDown {
+  0% {
+    top: 10%;
+  }
+  100% {
+    top: 50%;
+  }
+}
+
+@keyframes ballDown {
+  0% {
+    top: 10%;
+  }
+  100% {
+    top: 50%;
+  }
+}
+
+@-webkit-keyframes cameraIn {
+  0% {
+    width: 5px;
+    height: 5px;
+  }
+  80% {
+    width: 250px;
+    height: 250px;
+  }
+  100% {
+    width: 200px;
+    height: 200px;
+  }
+}
+
+@keyframes cameraIn {
+  0% {
+    width: 5px;
+    height: 5px;
+  }
+  80% {
+    width: 250px;
+    height: 250px;
+  }
+  100% {
+    width: 200px;
+    height: 200px;
+  }
+}
+
+.lens {
+  width: 100px;
+  height: 100px;
+  border: 15px solid #fff;
+  border-radius: 50%;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  -webkit-transform: translate(-50%, -50%);
+          transform: translate(-50%, -50%);
+  -webkit-animation: lensIn 0.3s 1.8s backwards;
+          animation: lensIn 0.3s 1.8s backwards;
+}
+
+@-webkit-keyframes lensIn {
+  0% {
+    width: 0;
+    height: 0;
+    opacity: 0;
+  }
+  10% {
+    opacity: 1;
+  }
+  80% {
+    width: 120px;
+    height: 120px;
+  }
+  100% {
+    width: 100px;
+    height: 100px;
+  }
+}
+
+@keyframes lensIn {
+  0% {
+    width: 0;
+    height: 0;
+    opacity: 0;
+  }
+  10% {
+    opacity: 1;
+  }
+  80% {
+    width: 120px;
+    height: 120px;
+  }
+  100% {
+    width: 100px;
+    height: 100px;
+  }
+}
+
+.flashlight {
+  width: 20px;
+  height: 20px;
+  background-color: #fff;
+  border-radius: 50%;
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  -webkit-animation: flashlightIn 0.3s 2.2s backwards;
+          animation: flashlightIn 0.3s 2.2s backwards;
+}
+
+.flashlight::after {
+  content: "";
+  width: 200px;
+  height: 200px;
+  border-radius: 50%;
+  background-color: rgba(255, 255, 255, 0.5);
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  -webkit-transform: translate(-50%, -50%);
+          transform: translate(-50%, -50%);
+  -webkit-animation: flash 0.3s 3s both;
+          animation: flash 0.3s 3s both;
+}
+
+@-webkit-keyframes flashlightIn {
+  0% {
+    -webkit-transform: scale(0);
+            transform: scale(0);
+  }
+  80% {
+    -webkit-transform: scale(1.2);
+            transform: scale(1.2);
+  }
+  100% {
+    -webkit-transform: scale(1);
+            transform: scale(1);
+  }
+}
+
+@keyframes flashlightIn {
+  0% {
+    -webkit-transform: scale(0);
+            transform: scale(0);
+  }
+  80% {
+    -webkit-transform: scale(1.2);
+            transform: scale(1.2);
+  }
+  100% {
+    -webkit-transform: scale(1);
+            transform: scale(1);
+  }
+}
+
+@-webkit-keyframes flash {
+  0% {
+    opacity: 0;
+  }
+  25% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0;
+  }
+  75% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+
+@keyframes flash {
+  0% {
+    opacity: 0;
+  }
+  25% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0;
+  }
+  75% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+
+.picture {
+  width: 250px;
+  height: 250px;
+  border: 10px solid #fff;
+  border-bottom: 20px solid #fff;
+  background-color: #ccc;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  -webkit-transform: translate(-50%, -50%);
+          transform: translate(-50%, -50%);
+  overflow: hidden;
+  -webkit-transition: all 0.3s;
+  transition: all 0.3s;
+  -webkit-animation: pictureIn 1s 3.5s backwards, pictureFlip 1s 4.5s;
+          animation: pictureIn 1s 3.5s backwards, pictureFlip 1s 4.5s;
+}
+
+.picture:hover {
+  width: 400px;
+  height: 400px;
+  background-color: #fff;
+  border: 0;
+  padding: 20px;
+  -webkit-box-shadow: 0 10px 20px rgba(0, 0, 0, 0.5);
+          box-shadow: 0 10px 20px rgba(0, 0, 0, 0.5);
+}
+
+.picture:hover .text {
+  opacity: 1;
+  -webkit-transform: translateX(0%);
+          transform: translateX(0%);
+  -webkit-transition: all 1s 0.3s;
+  transition: all 1s 0.3s;
+}
+
+.picture:hover ~ .mouse {
+  visibility: hidden;
+}
+
+.picture .text {
+  opacity: 0;
+  -webkit-transform: translateX(-20%);
+          transform: translateX(-20%);
+}
+
+.picture h1, .picture h2 {
+  margin: 0;
+}
+
+.picture h1 {
+  font-size: 24px;
+  line-height: 40px;
+  color: #333;
+}
+
+.picture h2 {
+  font-size: 16px;
+  line-height: 30px;
+  color: #333;
+}
+
+@-webkit-keyframes pictureIn {
+  0% {
+    height: 0;
+    width: 120px;
+    top: 100%;
+    -webkit-transform: translate(-50%, 0);
+            transform: translate(-50%, 0);
+    opacity: 0;
+  }
+  100% {
+    height: 120px;
+    width: 120px;
+    top: 100%;
+    -webkit-transform: translate(-50%, 0);
+            transform: translate(-50%, 0);
+  }
+}
+
+@keyframes pictureIn {
+  0% {
+    height: 0;
+    width: 120px;
+    top: 100%;
+    -webkit-transform: translate(-50%, 0);
+            transform: translate(-50%, 0);
+    opacity: 0;
+  }
+  100% {
+    height: 120px;
+    width: 120px;
+    top: 100%;
+    -webkit-transform: translate(-50%, 0);
+            transform: translate(-50%, 0);
+  }
+}
+
+@-webkit-keyframes pictureFlip {
+  0% {
+    height: 120px;
+    width: 120px;
+    top: 100%;
+    -webkit-transform: translate(-50%, 0) rotateX(0deg);
+            transform: translate(-50%, 0) rotateX(0deg);
+  }
+  100% {
+    height: 250px;
+    width: 250px;
+    top: 50%;
+    -webkit-transform: translate(-50%, -50%) rotateX(360deg);
+            transform: translate(-50%, -50%) rotateX(360deg);
+  }
+}
+
+@keyframes pictureFlip {
+  0% {
+    height: 120px;
+    width: 120px;
+    top: 100%;
+    -webkit-transform: translate(-50%, 0) rotateX(0deg);
+            transform: translate(-50%, 0) rotateX(0deg);
+  }
+  100% {
+    height: 250px;
+    width: 250px;
+    top: 50%;
+    -webkit-transform: translate(-50%, -50%) rotateX(360deg);
+            transform: translate(-50%, -50%) rotateX(360deg);
+  }
+}
+
+.imgBox {
+  -webkit-animation: showImg 1s 5s backwards;
+          animation: showImg 1s 5s backwards;
+  height: 300px;
+  overflow: hidden;
+}
+
+.imgBox img {
+  width: 100%;
+}
+
+@-webkit-keyframes showImg {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+@keyframes showImg {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+.mouse {
+  width: 25px;
+  height: 25px;
+  background-image: url("pointer.svg");
+  background-size: cover;
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  opacity: 0;
+  -webkit-transform: translateX(-50%);
+          transform: translateX(-50%);
+  -webkit-animation: mouseHover 1.5s 5.5s infinite;
+          animation: mouseHover 1.5s 5.5s infinite;
+}
+
+@-webkit-keyframes mouseHover {
+  0% {
+    top: 150%;
+  }
+  20% {
+    opacity: 1;
+  }
+  80% {
+    opacity: 1;
+  }
+  100% {
+    top: 60%;
+  }
+}
+
+@keyframes mouseHover {
+  0% {
+    top: 150%;
+  }
+  20% {
+    opacity: 1;
+  }
+  80% {
+    opacity: 1;
+  }
+  100% {
+    top: 60%;
+  }
+}
+/*# sourceMappingURL=index.css.map */
